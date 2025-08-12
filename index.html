@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="es-MX" dir="ltr">
+  <head>
+    <!-- Meta Tags Básicos -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- SEO Meta Tags -->
+    <title>
+      D38 Security Labs - Red Team, Pentesting México | Ciberseguridad
+    </title>
+    <meta
+      name="description"
+      content="Servicios especializados de ciberseguridad en México: Red Team, Pentesting y Threat Intelligence para Gobierno y PyMEs. Más rápido y eficiente."
+    />
+    <meta name="author" content="D38 Security Labs" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://d38securitylabs.com/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://d38securitylabs.com/" />
+    <meta
+      property="og:title"
+      content="D38 Security Labs - Red Team, Pentesting México"
+    />
+    <meta
+      property="og:description"
+      content="Servicios especializados de ciberseguridad: Red Team, Pentesting y Threat Intelligence para Gobierno y PyMEs en México."
+    />
+    <meta
+      property="og:image"
+      content="https://d38securitylabs.com/assets/img/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content="D38 Security Labs" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://d38securitylabs.com/" />
+    <meta
+      name="twitter:title"
+      content="D38 Security Labs - Red Team, Pentesting México"
+    />
+    <meta
+      name="twitter:description"
+      content="Servicios especializados de ciberseguridad: Red Team, Pentesting y Threat Intelligence para Gobierno y PyMEs en México."
+    />
+    <meta
+      name="twitter:image"
+      content="https://d38securitylabs.com/assets/img/twitter-image.jpg"
+    />
+    <meta name="twitter:creator" content="@d38securitylabs" />
+
+    <!-- Favicons y Mobile -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/icons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#e62527" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <!-- Preconnects para Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- CSS Crítico Inline (Above the fold) -->
+    <style>
+      /* CSS Crítico para evitar FOUC - Solo Hero y Header */
+      :root {
+        --color-red-primary: #e62527;
+        --color-blue-primary: #0995e1;
+        --color-cyan-accent: #00e2f3;
+        --color-gray-light: #d4d2ce;
+        --color-black-deep: #181818;
+        --color-gray-dark: #313131;
+        --color-white: #ffffff;
+        --font-primary: "Inter", system-ui, sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: var(--font-primary);
+        line-height: 1.6;
+        color: var(--color-gray-light);
+        background-color: var(--color-black-deep);
+        overflow-x: hidden;
+      }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(24, 24, 24, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.2rem 0;
+      }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--color-red-primary);
+        text-decoration: none;
+      }
+      .hero {
+        padding: 140px 0 100px;
+        background: radial-gradient(
+          ellipse at center,
+          var(--color-gray-dark) 0%,
+          var(--color-black-deep) 70%
+        );
+        position: relative;
+      }
+      .hero-content {
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-title {
+        font-size: clamp(3rem, 6vw, 4rem);
+        font-weight: 700;
+        background: linear-gradient(
+          135deg,
+          var(--color-red-primary),
+          var(--color-blue-primary),
+          var(--color-cyan-accent)
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+      }
+    </style>
+
+    <!-- Fuentes con font-display: swap -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Principal (diferido) -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://d38securitylabs.com/#organization",
+            "name": "D38 Security Labs",
+            "url": "https://d38securitylabs.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://d38securitylabs.com/assets/img/logo.png",
+              "width": 400,
+              "height": 200
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+52-55-1234-5678",
+              "contactType": "customer service",
+              "areaServed": "MX",
+              "availableLanguage": "Spanish"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Ciudad de México",
+              "addressCountry": "MX"
+            },
+            "sameAs": ["https://www.linkedin.com/company/d38-security-labs/"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://d38securitylabs.com/#website",
+            "url": "https://d38securitylabs.com/",
+            "name": "D38 Security Labs",
+            "description": "Servicios especializados de ciberseguridad en México",
+            "publisher": {
+              "@id": "https://d38securitylabs.com/#organization"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://d38securitylabs.com/?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "Service",
+            "@id": "https://d38securitylabs.com/#redteam",
+            "name": "Red Team Operations",
+            "description": "Simulaciones avanzadas de ataques reales para evaluar la resistencia organizacional",
+            "provider": {
+              "@id": "https://d38securitylabs.com/#organization"
+            },
+            "areaServed": "MX"
+          },
+          {
+            "@type": "Service",
+            "@id": "https://d38securitylabs.com/#pentesting",
+            "name": "Pentesting Especializado",
+            "description": "Auditorías técnicas profundas de aplicaciones web, móviles, APIs e infraestructura",
+            "provider": {
+              "@id": "https://d38securitylabs.com/#organization"
+            },
+            "areaServed": "MX"
+          },
+          {
+            "@type": "Service",
+            "@id": "https://d38securitylabs.com/#threatintel",
+            "name": "Threat Intelligence",
+            "description": "Análisis proactivo de amenazas específicas y monitoreo de actores maliciosos",
+            "provider": {
+              "@id": "https://d38securitylabs.com/#organization"
+            },
+            "areaServed": "MX"
+          }
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- Skip Link para Accesibilidad -->
+    <a href="#main" class="skip-link">Saltar al contenido principal</a>
+
+    <!-- Header Landmark -->
+    <header class="header" id="header" role="banner">
+      <nav
+        class="nav container"
+        role="navigation"
+        aria-label="Navegación principal"
+      >
+        <a href="/" class="logo" aria-label="D38 Security Labs - Inicio">D38</a>
+
+        <ul class="nav-menu" id="nav-menu" role="menubar">
+          <li role="none">
+            <a
+              href="#servicios"
+              class="nav-link"
+              role="menuitem"
+              aria-describedby="servicios-desc"
+            >
+              Qué Hacemos
+              <span id="servicios-desc" class="sr-only"
+                >Conoce nuestros servicios de ciberseguridad</span
+              >
+            </a>
+          </li>
+          <li role="none">
+            <a
+              href="#diferenciadores"
+              class="nav-link"
+              role="menuitem"
+              aria-describedby="diferenciadores-desc"
+            >
+              Por Qué D38
+              <span id="diferenciadores-desc" class="sr-only"
+                >Descubre qué nos hace diferentes</span
+              >
+            </a>
+          </li>
+          <li role="none">
+            <a
+              href="#contacto"
+              class="nav-link"
+              role="menuitem"
+              aria-describedby="contacto-desc"
+            >
+              Contacto
+              <span id="contacto-desc" class="sr-only"
+                >Ponte en contacto con nosotros</span
+              >
+            </a>
+          </li>
+          <li role="none">
+            <a
+              href="#contacto"
+              class="btn btn--primary"
+              role="menuitem"
+              aria-describedby="cotizacion-desc"
+            >
+              Solicitar Cotización
+              <span id="cotizacion-desc" class="sr-only"
+                >Solicita una cotización personalizada</span
+              >
+            </a>
+          </li>
+
+          <!-- FUTURO: Botón PentraX (preparado con BEM) -->
+          <li role="none" class="pentrax-nav-item" style="display: none">
+            <a
+              href="#"
+              class="btn btn--pentrax pentrax-btn"
+              role="menuitem"
+              aria-describedby="pentrax-desc"
+            >
+              Acceder a PentraX
+              <span id="pentrax-desc" class="sr-only"
+                >Accede a nuestra plataforma PentraX</span
+              >
+            </a>
+          </li>
+        </ul>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobile-menu-btn"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+          aria-label="Abrir menú de navegación"
+          type="button"
+        >
+          <span class="mobile-menu-btn__line"></span>
+          <span class="mobile-menu-btn__line"></span>
+          <span class="mobile-menu-btn__line"></span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Main Content Landmark -->
+    <main id="main" role="main">
+      <!-- Hero Section -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container">
+          <div class="hero__content">
+            <h1 id="hero-title" class="hero__title">D38 Security Labs</h1>
+            <p class="hero__subtitle">
+              Red Team · Pentesting · Threat Intelligence
+            </p>
+            <p class="hero__description">
+              Protegemos la infraestructura digital de gobiernos y PyMEs con
+              servicios de ciberseguridad más rápidos, eficientes y económicos
+              que la competencia.
+            </p>
+            <div class="hero__cta">
+              <a
+                href="#contacto"
+                class="btn btn--primary btn--large"
+                aria-describedby="evaluar-desc"
+              >
+                Evaluar mi Seguridad
+                <span id="evaluar-desc" class="sr-only"
+                  >Inicia una evaluación gratuita de seguridad</span
+                >
+              </a>
+              <a
+                href="#servicios"
+                class="btn btn--secondary btn--large"
+                aria-describedby="conocer-desc"
+              >
+                Conocer Servicios
+                <span id="conocer-desc" class="sr-only"
+                  >Descubre todos nuestros servicios</span
+                >
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+
+      <!-- ===== SECCIÓN 2: QUÉ HACEMOS (ROTATING CAROUSEL) ===== -->
+      <section class="services section" id="servicios" style="overflow: visible !important;">
+        <div class="container" style="overflow: visible !important;">
+          <h2 id="servicios-title" class="section__title">Qué Hacemos</h2>
+
+          <!-- Rotating Carousel Container -->
+          <div class="rotating-carousel" id="rotating-carousel">
+            <!-- Navigation Arrows -->
+            <button
+              class="rotating-carousel__nav rotating-carousel__nav--prev"
+              aria-label="Servicio anterior"
+              id="carousel-prev-btn"
+            >
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                ></path>
+              </svg>
+            </button>
+
+            <button
+              class="rotating-carousel__nav rotating-carousel__nav--next"
+              aria-label="Siguiente servicio"
+              id="carousel-next-btn"
+            >
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </button>
+
+            <!-- Carousel Track -->
+            <div class="rotating-carousel__track" id="rotating-track">
+              <!-- Service 1: Red Team -->
+              <article
+                class="rotating-service-card rotating-service-card--redteam rotating-service-card--center"
+                data-service="0"
+                data-original-index="0"
+                aria-labelledby="redteam-title"
+              >
+                <div class="rotating-service-card__content">
+                  <div class="rotating-service-card__icon" aria-hidden="true">
+                    🛡️
+                  </div>
+                  <h3 id="redteam-title" class="rotating-service-card__title">
+                    Red Team Operations
+                  </h3>
+                  <p class="rotating-service-card__description">
+                    Simulaciones avanzadas de ataques reales para evaluar la
+                    resistencia de tu organización ante amenazas persistentes y
+                    sofisticadas.
+                  </p>
+                  <ul class="rotating-service-card__features">
+                    <li>Simulación de APT (Advanced Persistent Threats)</li>
+                    <li>Social Engineering y Phishing dirigido</li>
+                    <li>Bypass de controles de seguridad</li>
+                    <li>Exfiltración de datos simulada</li>
+                    <li>Reportes ejecutivos detallados</li>
+                  </ul>
+                </div>
+                <div class="rotating-service-card__actions">
+                  <a href="/servicios/red-team" class="btn btn--primary">
+                    Saber Más
+                    <svg
+                      width="16"
+                      height="16"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                      ></path>
+                    </svg>
+                  </a>
+                  <a href="#contacto" class="btn btn--secondary">Cotizar</a>
+                </div>
+              </article>
+
+              <!-- Service 2: Pentesting -->
+              <article
+                class="rotating-service-card rotating-service-card--pentesting rotating-service-card--right"
+                data-service="1"
+                data-original-index="1"
+                aria-labelledby="pentesting-title"
+              >
+                <div class="rotating-service-card__content">
+                  <div class="rotating-service-card__icon" aria-hidden="true">
+                    🔍
+                  </div>
+                  <h3
+                    id="pentesting-title"
+                    class="rotating-service-card__title"
+                  >
+                    Pentesting Especializado
+                  </h3>
+                  <p class="rotating-service-card__description">
+                    Auditorías técnicas profundas de aplicaciones web, móviles,
+                    APIs e infraestructura con metodologías probadas
+                    internacionalmente.
+                  </p>
+                  <ul class="rotating-service-card__features">
+                    <li>Web Application Security Testing</li>
+                    <li>Mobile App Penetration Testing</li>
+                    <li>API Security Assessment</li>
+                    <li>Network Infrastructure Testing</li>
+                    <li>OWASP Top 10 compliance</li>
+                  </ul>
+                </div>
+                <div class="rotating-service-card__actions">
+                  <a href="/servicios/pentesting" class="btn btn--primary">
+                    Saber Más
+                    <svg
+                      width="16"
+                      height="16"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                      ></path>
+                    </svg>
+                  </a>
+                  <a href="#contacto" class="btn btn--secondary">Cotizar</a>
+                </div>
+              </article>
+
+              <!-- Service 3: Threat Intelligence -->
+              <article
+                class="rotating-service-card rotating-service-card--threatintel rotating-service-card--left"
+                data-service="2"
+                data-original-index="2"
+                aria-labelledby="threatintel-title"
+              >
+                <div class="rotating-service-card__content">
+                  <div class="rotating-service-card__icon" aria-hidden="true">
+                    📊
+                  </div>
+                  <h3
+                    id="threatintel-title"
+                    class="rotating-service-card__title"
+                  >
+                    Threat Intelligence
+                  </h3>
+                  <p class="rotating-service-card__description">
+                    Análisis proactivo de amenazas específicas para tu sector,
+                    monitoreo continuo e inteligencia accionable para decisiones
+                    estratégicas.
+                  </p>
+                  <ul class="rotating-service-card__features">
+                    <li>Monitoreo de Dark Web</li>
+                    <li>IOCs (Indicators of Compromise)</li>
+                    <li>Threat Actor Profiling</li>
+                    <li>Industry-specific threats</li>
+                    <li>Real-time threat feeds</li>
+                  </ul>
+                </div>
+                <div class="rotating-service-card__actions">
+                  <a
+                    href="/servicios/threat-intelligence"
+                    class="btn btn--primary"
+                  >
+                    Saber Más
+                    <svg
+                      width="16"
+                      height="16"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                      ></path>
+                    </svg>
+                  </a>
+                  <a href="#contacto" class="btn btn--secondary">Cotizar</a>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Indicators -->
+          <div class="rotating-carousel__indicators" id="rotating-indicators">
+            <button
+              class="rotating-carousel__indicator rotating-carousel__indicator--active"
+              aria-label="Red Team Operations"
+              data-slide="0"
+            ></button>
+            <button
+              class="rotating-carousel__indicator"
+              aria-label="Pentesting Especializado"
+              data-slide="1"
+            ></button>
+            <button
+              class="rotating-carousel__indicator"
+              aria-label="Threat Intelligence"
+              data-slide="2"
+            ></button>
+          </div>
+
+          <!-- Controls -->
+          <div class="rotating-carousel__controls">
+            <button class="rotating-carousel__control" id="autoplay-toggle">
+              ⏸️ Pausar Auto-play
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Different Section -->
+      <section
+        class="why section"
+        id="diferenciadores"
+        aria-labelledby="why-title"
+      >
+        <div class="container">
+          <h2 id="why-title" class="section__title">
+            Por Qué Somos Diferentes
+          </h2>
+
+          <div class="why__grid">
+            <article
+              class="why-card why-card--speed"
+              aria-labelledby="speed-title"
+            >
+              <div class="why-card__icon" aria-hidden="true">⚡</div>
+              <h3 id="speed-title" class="why-card__title">Velocidad</h3>
+              <p class="why-card__description">
+                Metodologías ágiles y automatizadas que reducen el tiempo de
+                evaluación sin comprometer la profundidad del análisis.
+                Resultados en días, no semanas.
+              </p>
+            </article>
+
+            <article
+              class="why-card why-card--efficiency"
+              aria-labelledby="efficiency-title"
+            >
+              <div class="why-card__icon" aria-hidden="true">🎯</div>
+              <h3 id="efficiency-title" class="why-card__title">Eficiencia</h3>
+              <p class="why-card__description">
+                Enfoque directo en vulnerabilidades críticas que realmente
+                impactan tu postura de seguridad. Eliminamos el ruido y nos
+                centramos en lo que importa.
+              </p>
+            </article>
+
+            <article
+              class="why-card why-card--tracking"
+              aria-labelledby="tracking-title"
+            >
+              <div class="why-card__icon" aria-hidden="true">📈</div>
+              <h3 id="tracking-title" class="why-card__title">Seguimiento</h3>
+              <p class="why-card__description">
+                Acompañamiento continuo en la implementación de controles,
+                validación de remediaciones y medición del progreso en tu
+                madurez de ciberseguridad.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section
+        class="contact section"
+        id="contacto"
+        aria-labelledby="contact-title"
+      >
+        <div class="container">
+          <div class="contact__content">
+            <h2 id="contact-title" class="section__title">
+              ¿Listo para Fortalecer tu Seguridad?
+            </h2>
+            <p class="contact__description">
+              Inicia con una evaluación gratuita de 30 minutos donde
+              analizaremos tu postura actual de ciberseguridad y diseñaremos una
+              estrategia personalizada para tu organización.
+            </p>
+
+            <div class="contact__options">
+              <!-- Formulario de Contacto -->
+              <div class="contact-card contact-card--form">
+                <h3 class="contact-card__title">📧 Contacto Directo</h3>
+                <p class="contact-card__description">
+                  Cuéntanos sobre tu proyecto y te responderemos en menos de 24
+                  horas.
+                </p>
+
+                <form
+                  class="contact-form"
+                  id="contact-form"
+                  netlify
+                  name="contact"
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  novalidate
+                  aria-labelledby="form-title"
+                >
+                  <h4 id="form-title" class="sr-only">
+                    Formulario de contacto
+                  </h4>
+
+                  <!-- Honeypot for spam protection -->
+                  <div class="sr-only">
+                    <label for="bot-field"
+                      >No llenes este campo si eres humano:</label
+                    >
+                    <input name="bot-field" id="bot-field" tabindex="-1" />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="name" class="form-group__label"
+                      >Nombre Completo *</label
+                    >
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      class="form-group__input"
+                      required
+                      autocomplete="name"
+                      aria-describedby="name-error"
+                      aria-invalid="false"
+                    />
+                    <div
+                      id="name-error"
+                      class="form-group__error"
+                      role="alert"
+                      aria-live="polite"
+                    ></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email" class="form-group__label"
+                      >Email Corporativo *</label
+                    >
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="form-group__input"
+                      required
+                      autocomplete="email"
+                      inputmode="email"
+                      aria-describedby="email-error"
+                      aria-invalid="false"
+                    />
+                    <div
+                      id="email-error"
+                      class="form-group__error"
+                      role="alert"
+                      aria-live="polite"
+                    ></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="company" class="form-group__label"
+                      >Empresa/Organización *</label
+                    >
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      class="form-group__input"
+                      required
+                      autocomplete="organization"
+                      aria-describedby="company-error"
+                      aria-invalid="false"
+                    />
+                    <div
+                      id="company-error"
+                      class="form-group__error"
+                      role="alert"
+                      aria-live="polite"
+                    ></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="message" class="form-group__label"
+                      >Describe tu Necesidad</label
+                    >
+                    <textarea
+                      id="message"
+                      name="message"
+                      class="form-group__input form-group__textarea"
+                      placeholder="Ej: Necesitamos una auditoría de seguridad para nuestra aplicación web..."
+                      rows="4"
+                      aria-describedby="message-help"
+                    ></textarea>
+                    <div id="message-help" class="form-group__help">
+                      Opcional: Ayúdanos a entender mejor tu proyecto
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="btn btn--primary btn--full contact-form__submit"
+                  >
+                    <span class="contact-form__submit-text"
+                      >Enviar Solicitud</span
+                    >
+                    <span
+                      class="contact-form__submit-loading"
+                      aria-hidden="true"
+                      >Enviando...</span
+                    >
+                  </button>
+
+                  <!-- Success/Error Messages -->
+                  <div
+                    class="contact-form__message"
+                    id="form-message"
+                    role="status"
+                    aria-live="polite"
+                  ></div>
+                </form>
+              </div>
+
+              <!-- Agenda de Llamada -->
+              <div class="contact-card contact-card--schedule">
+                <h3 class="contact-card__title">📅 Agenda una Llamada</h3>
+                <p class="contact-card__description">
+                  Habla directamente con nuestros expertos y obtén una consulta
+                  personalizada.
+                </p>
+
+                <div class="contact-card__actions">
+                  <a
+                    href="#"
+                    class="btn btn--primary btn--full"
+                    id="schedule-call"
+                    aria-describedby="schedule-desc"
+                  >
+                    Agendar Consulta Gratuita
+                    <span id="schedule-desc" class="sr-only"
+                      >Agenda una consulta gratuita de 30 minutos</span
+                    >
+                  </a>
+
+                  <div class="contact-card__info">
+                    <p>
+                      <strong>📞 Teléfono:</strong>
+                      <a
+                        href="tel:+525512345678"
+                        aria-label="Llamar al +52 55 1234 5678"
+                        >+52 55 1234 5678</a
+                      >
+                    </p>
+                    <p>
+                      <strong>✉️ Email:</strong>
+                      <a
+                        href="mailto:contact@d38labs.com"
+                        aria-label="Enviar email a contact@d38labs.com"
+                        >contact@d38labs.com</a
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Landmark -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__content">
+          <div class="footer-section footer-section--about">
+            <h3 class="footer-section__title">D38 Security Labs</h3>
+            <p class="footer-section__text">
+              Servicios especializados de ciberseguridad para gobiernos y PyMEs.
+              Protegemos tu infraestructura digital con metodologías probadas.
+            </p>
+          </div>
+
+          <div class="footer-section footer-section--services">
+            <h3 class="footer-section__title">Servicios</h3>
+            <nav aria-label="Servicios de footer">
+              <ul class="footer-section__list">
+                <li>
+                  <a href="#servicios" aria-describedby="footer-redteam"
+                    >Red Team Operations</a
+                  >
+                </li>
+                <li>
+                  <a href="#servicios" aria-describedby="footer-pentesting"
+                    >Pentesting Especializado</a
+                  >
+                </li>
+                <li>
+                  <a href="#servicios" aria-describedby="footer-threatintel"
+                    >Threat Intelligence</a
+                  >
+                </li>
+              </ul>
+              <div class="sr-only">
+                <span id="footer-redteam"
+                  >Navegar a sección Red Team Operations</span
+                >
+                <span id="footer-pentesting"
+                  >Navegar a sección Pentesting Especializado</span
+                >
+                <span id="footer-threatintel"
+                  >Navegar a sección Threat Intelligence</span
+                >
+              </div>
+            </nav>
+          </div>
+
+          <div class="footer-section footer-section--contact">
+            <h3 class="footer-section__title">Contacto</h3>
+            <address class="footer-section__address">
+              <p>
+                📧
+                <a
+                  href="mailto:contact@d38labs.com"
+                  aria-label="Enviar email a contact@d38labs.com"
+                  >contact@d38labs.com</a
+                >
+              </p>
+              <p>
+                📞
+                <a
+                  href="tel:+525512345678"
+                  aria-label="Llamar al +52 55 1234 5678"
+                  >+52 55 1234 5678</a
+                >
+              </p>
+              <p>📍 Ciudad de México, México</p>
+            </address>
+
+            <!-- Redes Sociales -->
+            <nav class="social-links" aria-label="Redes sociales">
+              <a
+                href="mailto:contact@d38labs.com"
+                class="social-links__item"
+                aria-label="Contactar por email"
+              >
+                <span aria-hidden="true">📧</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/d38-security-labs/"
+                class="social-links__item"
+                aria-label="Seguir en LinkedIn"
+                target="_blank"
+                rel="noopener"
+              >
+                <span aria-hidden="true">💼</span>
+              </a>
+              <a
+                href="#"
+                class="social-links__item"
+                aria-label="Seguir en Twitter"
+                target="_blank"
+                rel="noopener"
+              >
+                <span aria-hidden="true">🐦</span>
+              </a>
+            </nav>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p>&copy; 2024 D38 Security Labs. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- NoScript para usuarios sin JavaScript -->
+    <noscript>
+      <div class="noscript-banner">
+        <div class="container">
+          <p>
+            Este sitio funciona mejor con JavaScript habilitado.
+            <a href="mailto:contact@d38labs.com"
+              >Contáctanos directamente por email</a
+            >
+            para solicitar nuestros servicios.
+          </p>
+        </div>
+      </div>
+    </noscript>
+
+    <!-- JavaScript Principal (defer para no bloquear render) -->
+    <script src="js/main.js" defer></script>
+
+    <!-- Google Analytics 4 (comentado - activar cuando tengas el ID) -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            page_title: 'D38 Security Labs - Inicio',
+            custom_map: {'dimension1': 'cybersecurity'}
+        });
+    </script>
+    -->
+  </body>
+</html>

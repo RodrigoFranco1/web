@@ -1,0 +1,232 @@
+# SECURITY HEADERS CONFIGURATION
+# Archivo de referencia para configurar cabeceras de seguridad
+# D38 Security Labs - Landing Page
+# 
+# IMPORTANTE: Este archivo es solo de referencia. 
+# Configura estas cabeceras en tu servidor web, CDN o hosting provider.
+
+# ===== NETLIFY CONFIGURATION =====
+# Para Netlify, crea un archivo _headers en la raíz:
+
+/*
+  # Seguridad General
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  
+  # Content Security Policy (CSP) - Ajustar según necesidades
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://assets.calendly.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://api.calendly.com; frame-src https://calendly.com; object-src 'none'; base-uri 'self'; form-action 'self' https://d38securitylabs.com; frame-ancestors 'none';
+  
+  # Permissions Policy (antes Feature Policy)
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), speaker=(), vibrate=(), fullscreen=(self), autoplay=(), encrypted-media=(), picture-in-picture=()
+  
+  # HSTS (HTTPS Strict Transport Security)
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  
+  # Cross-Origin Policies
+  Cross-Origin-Embedder-Policy: unsafe-none
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+  Cross-Origin-Resource-Policy: same-site
+
+# CSS files
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# JavaScript files  
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images and assets
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML files
+/*.html
+  Cache-Control: public, max-age=3600
+
+# ===== APACHE CONFIGURATION =====
+# Para Apache, agregar en .htaccess:
+
+<IfModule mod_headers.c>
+    # Seguridad General
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # HSTS
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # CSP (ajustar según necesidades)
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://assets.calendly.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-src https://calendly.com; object-src 'none';"
+    
+    # Permissions Policy
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    
+    # Cross-Origin Policies
+    Header always set Cross-Origin-Embedder-Policy "unsafe-none"
+    Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+    Header always set Cross-Origin-Resource-Policy "same-site"
+</IfModule>
+
+# Cache Control
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# ===== NGINX CONFIGURATION =====
+# Para Nginx, agregar en server block:
+
+# Seguridad General
+add_header X-Frame-Options "DENY" always;
+add_header X-Content-Type-Options "nosniff" always;
+add_header X-XSS-Protection "1; mode=block" always;
+add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+
+# HSTS
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+
+# CSP (ajustar según necesidades)
+add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://assets.calendly.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-src https://calendly.com; object-src 'none';" always;
+
+# Permissions Policy
+add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()" always;
+
+# Cross-Origin Policies
+add_header Cross-Origin-Embedder-Policy "unsafe-none" always;
+add_header Cross-Origin-Opener-Policy "same-origin-allow-popups" always;
+add_header Cross-Origin-Resource-Policy "same-site" always;
+
+# Cache Control
+location ~* \.(css|js)$ {
+    expires 1y;
+    add_header Cache-Control "public, immutable";
+}
+
+location ~* \.(png|jpg|jpeg|gif|webp|svg|ico)$ {
+    expires 1y;
+    add_header Cache-Control "public, immutable";
+}
+
+location ~* \.html$ {
+    expires 1h;
+    add_header Cache-Control "public";
+}
+
+# ===== CLOUDFLARE CONFIGURATION =====
+# Para Cloudflare, configurar en Page Rules o Workers:
+
+# Transform Rules para Headers:
+# - X-Frame-Options: DENY
+# - X-Content-Type-Options: nosniff  
+# - X-XSS-Protection: 1; mode=block
+# - Referrer-Policy: strict-origin-when-cross-origin
+# - Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+# ===== FORMULARIO BACKEND - CONSIDERACIONES DE SEGURIDAD =====
+
+# TODO Lista para implementación de backend:
+
+# 1. RATE LIMITING
+# - Máximo 5 envíos por IP por hora
+# - Máximo 1 envío por IP por minuto
+# - Bloquear IPs con comportamiento sospechoso
+
+# 2. VALIDACIÓN SERVER-SIDE
+# - Validar todos los campos en backend
+# - Sanitizar inputs con librerías especializadas
+# - Validar longitud máxima de campos
+# - Verificar formato de email con regex robusto
+
+# 3. PROTECCIÓN CSRF
+# - Implementar tokens CSRF únicos por sesión
+# - Validar origin y referer headers
+# - Usar SameSite cookies
+
+# 4. CAPTCHA/BOT PROTECTION
+# - Implementar hCaptcha o reCAPTCHA v3
+# - Honeypot fields (ya implementado en frontend)
+# - Verificar tiempo de llenado del formulario
+
+# 5. LOGGING Y MONITORING
+# - Log todos los intentos de envío
+# - Monitor para patrones sospechosos
+# - Alertas para múltiples fallos de validación
+
+# 6. SANITIZACIÓN Y ENCODING
+# - Escapar todos los outputs
+# - Usar prepared statements para DB
+# - Validar Content-Type en requests
+
+# 7. EMAIL SECURITY
+# - Usar SPF, DKIM, DMARC
+# - No incluir datos sensibles en emails
+# - Rate limit para prevenir spam
+
+# Ejemplo de middleware de seguridad (Node.js/Express):
+/*
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+const validator = require('validator');
+
+// Rate limiting
+const contactFormLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 5, // 5 requests per hour
+  message: 'Demasiados envíos desde esta IP',
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Validation middleware
+const validateContactForm = (req, res, next) => {
+  const { name, email, company, message } = req.body;
+  
+  // Sanitize and validate
+  if (!name || !validator.isLength(name, { min: 2, max: 100 })) {
+    return res.status(400).json({ error: 'Nombre inválido' });
+  }
+  
+  if (!email || !validator.isEmail(email)) {
+    return res.status(400).json({ error: 'Email inválido' });
+  }
+  
+  if (!company || !validator.isLength(company, { min: 2, max: 200 })) {
+    return res.status(400).json({ error: 'Empresa inválida' });
+  }
+  
+  if (message && !validator.isLength(message, { max: 2000 })) {
+    return res.status(400).json({ error: 'Mensaje muy largo' });
+  }
+  
+  next();
+};
+*/
+
+# ===== MONITOREO DE SEGURIDAD =====
+
+# Herramientas recomendadas:
+# 1. SSL Labs Test: https://www.ssllabs.com/ssltest/
+# 2. Security Headers: https://securityheaders.com/
+# 3. Mozilla Observatory: https://observatory.mozilla.org/
+# 4. Qualys SSL Test: https://www.ssllabs.com/ssltest/
+# 5. OWASP ZAP para testing automático
+
+# Monitoreo continuo:
+# - Configurar alertas para cambios en headers de seguridad
+# - Revisar logs regularmente para intentos de ataque
+# - Usar herramientas como Uptime Robot para monitoreo 24/7
+# - Implementar Web Application Firewall (WAF) si es posible
+
+# IMPORTANTE: Ajustar estas configuraciones según tu stack tecnológico
+# y requirements específicos de seguridad de D38 Security Labs.
